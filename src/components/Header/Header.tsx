@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { fetchCurrency } from '../../store/slices/currencySlice';
+import React from 'react';
+import { Box } from '@mui/material';
+import NavLink from '../NavLink';
 
 const Header = () => {
-  const dispatch = useAppDispatch();
-  const { currency } = useAppSelector(state => state.currencyState)
-
-  useEffect(() => {
-    dispatch(fetchCurrency());
-  }, [dispatch]);
-
-  return <div>{currency}</div>;
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      bgcolor="#90a4ae"
+      height={60}
+    >
+      <NavLink to="/">Currencies</NavLink>
+      <NavLink to="/converter">Converter</NavLink>
+    </Box>
+  );
 };
 
 export default Header;

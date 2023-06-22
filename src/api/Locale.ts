@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export interface Locale {
   status: string;
@@ -12,5 +12,7 @@ interface LocaleResponse {
 }
 
 export function getLocaleData(): Promise<LocaleResponse> {
-  return axios.get('http://ip-api.com/json/?fields=status,message,country,city,currency');
+  return axios.get(
+    'http://ip-api.com/json/?fields=status,message,country,city,currency',
+  );
 }

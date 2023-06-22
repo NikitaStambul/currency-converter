@@ -1,6 +1,6 @@
-/* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getLocaleData } from '../../api/Locale';
+import { getLocaleData } from '../../api/locale';
+import { LocalStorageKeys } from '../LocalStorageKeys';
 
 export const fetchCurrency = createAsyncThunk(
   'currency/fetchCurrency',
@@ -12,19 +12,19 @@ export const fetchCurrency = createAsyncThunk(
 );
 
 export interface State {
-  currency: string | null;
+  currency: string;
   isLoaded: boolean;
   hasError: boolean;
 }
 
 const initialState: State = {
-  currency: null,
+  currency: 'USD',
   isLoaded: false,
   hasError: false,
 };
 
 const stateFromStorage: State = JSON.parse(
-  localStorage.getItem('currency') || JSON.stringify(initialState),
+  localStorage.getItem(LocalStorageKeys.CurrencyState) || JSON.stringify(initialState),
 );
 
 const localeSlice = createSlice({
