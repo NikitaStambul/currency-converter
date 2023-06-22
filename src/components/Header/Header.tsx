@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { fetchCurrency } from '../../store/slices/currencySlice';
 
 const Header = () => {
-  return <div>Header</div>;
+  const dispatch = useAppDispatch();
+  const { currency } = useAppSelector(state => state.currencyState)
+
+  useEffect(() => {
+    dispatch(fetchCurrency());
+  }, [dispatch]);
+
+  return <div>{currency}</div>;
 };
 
 export default Header;
