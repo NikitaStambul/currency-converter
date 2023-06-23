@@ -1,7 +1,10 @@
 import React from 'react';
+import Converter from '../../components/Converter/Converter';
 
 const ConverterPage = () => {
-  return <div>ConverterPage</div>;
+  return (
+    <Converter />
+  );
 };
 
 export default ConverterPage;

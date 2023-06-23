@@ -15,8 +15,6 @@ const ExchangeRatesTable = () => {
   const { currency } = useAppSelector((state) => state.currencyState);
   const { exchangeRates } = useAppSelector((state) => state.exchangeState);
 
-  console.log(JSON.stringify(exchangeRates));
-
   const relativeRates = getRelativeExchangeRates(currency, exchangeRates);
 
   return (
