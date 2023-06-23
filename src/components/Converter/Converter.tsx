@@ -1,4 +1,4 @@
-import { Paper, TextField, Typography } from '@mui/material';
+import { Box, Paper, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CurrencySelect from '../CurrencySelect/CurrencySelect';
 import { useAppSelector } from '../../store/hooks';
@@ -29,16 +29,18 @@ const Converter = () => {
   })();
 
   return (
-    <Paper sx={{ paddingY: 1, paddingX: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-      <Typography>From {currency}</Typography>
-      <TextField
-        size="small"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <Typography>To</Typography>
-      <CurrencySelect selected={toCurrency} onSelect={handleToSelect} />
-      <Typography>Result: {result?.toFixed(2)}</Typography>
+    <Paper>
+      <Box display='flex' alignItems='center' gap={2} paddingX={2} paddingY={1}>
+        <Typography>From {currency}</Typography>
+        <TextField
+          size="small"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <Typography>To</Typography>
+        <CurrencySelect selected={toCurrency} onSelect={handleToSelect} />
+        <Typography>Result: {result?.toFixed(2)}</Typography>
+      </Box>
     </Paper>
   );
 };

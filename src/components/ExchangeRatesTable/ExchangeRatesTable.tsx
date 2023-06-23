@@ -18,7 +18,7 @@ const ExchangeRatesTable = () => {
   const relativeRates = getRelativeExchangeRates(currency, exchangeRates);
 
   return (
-    <TableContainer component={Paper} sx={{ height: 600 }}>
+    <TableContainer component={Paper} sx={{ height: 'calc(100vh - 150px)' }}>
       <Table>
         <TableHead>
           <TableRow>
