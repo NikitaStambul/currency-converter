@@ -10,9 +10,13 @@ const GuessedCurrency = () => {
 
   useEffect(() => {
     async function getGuessedCurrency() {
-      const locale = await getLocaleData();
+      try {
+        const locale = await getLocaleData();
 
-      setGuessedCurrency(locale.data.currency);
+        setGuessedCurrency(locale.data.currency);
+      } catch (error) {
+        setGuessedCurrency('USD')
+      }
     }
 
     getGuessedCurrency();
