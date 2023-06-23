@@ -3,7 +3,7 @@ import { styled } from '@mui/material';
 import { NavLink as Link } from 'react-router-dom';
 
 const NavLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.primary.main,
+  color: theme.palette.text.primary,
   display: 'flex',
   alignItems: 'center',
   height: '100%',
@@ -11,11 +11,12 @@ const NavLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
   transition: 'color 0.3s ease-in-out',
   '&:hover': {
-    color: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.light,
   },
   '&.active': {
-    backgroundColor: theme.palette.secondary.light,
-    color: theme.palette.common.white,
+    color: theme.palette.primary.main,
+    borderBottom: `4px solid ${theme.palette.primary.main}`,
+    paddingBottom: '4px',
   },
 }));
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Stack } from '@mui/material';
+import { Box, Container, Paper, Stack } from '@mui/material';
 import NavLink from '../NavLink';
 import CurrencySelect from '../CurrencySelect/CurrencySelect';
 import { setCurrency } from '../../store/slices/currencySlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 const Header = () => {
   const { currency } = useAppSelector((state) => state.currencyState);
@@ -17,19 +18,23 @@ const Header = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      bgcolor="#90a4ae"
-      height={60}
-    >
-      <Stack direction="row" height='100%' mr={2}>
-        <NavLink to="/">Currencies</NavLink>
-        <NavLink to="/converter">Converter</NavLink>
-      </Stack>
-      <CurrencySelect selected={currency} onSelect={handleSelect} />
-    </Box>
+    <Paper>
+      <Container>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          height={60}
+        >
+          <Logo />
+          <Stack direction="row" height="100%" mr={2}>
+            <NavLink to="/">Currencies</NavLink>
+            <NavLink to="/converter">Converter</NavLink>
+          </Stack>
+          <CurrencySelect selected={currency} onSelect={handleSelect} />
+        </Box>
+      </Container>
+    </Paper>
   );
 };
 
