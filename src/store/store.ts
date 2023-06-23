@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import currencyReducer from './slices/currencySlice';
+import exchangeReducer from './slices/exchangeSlice';
 import { Middleware } from 'redux';
+import { LocalStorageKeys } from './LocalStorageKeys';
 
 const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
 
   localStorage.setItem(
-    'currency',
+    LocalStorageKeys.CurrencyState,
     JSON.stringify(store.getState().currencyState),
   );
 
@@ -16,7 +18,9 @@ const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
 export const store = configureStore({
   reducer: {
     currencyState: currencyReducer,
+    exchangeState: exchangeReducer,
   },
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),
 });
