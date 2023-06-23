@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
-import CurrenciesPage from './pages/CurrenciesPage';
 import { Container } from '@mui/material';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import FirstCurrencySelect from './components/FirstCurrencySelect/FirstCurrencySelect';
-import ConverterPage from './pages/ConverterPage/ConverterPage';
 import { fetchExchange } from './store/slices/exchangeSlice';
+import Loader from './components/Loader/Loader';
+
+const FirstCurrencySelect = lazy(
+  () => import('./components/FirstCurrencySelect'),
+);
+const ConverterPage = lazy(() => import('./pages/ConverterPage'));
+const CurrenciesPage = lazy(() => import('./pages/CurrenciesPage'));
 
 function App() {
-  const { currency } = useAppSelector(state => state.currencyState);
+  const { currency } = useAppSelector((state) => state.currencyState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -17,19 +21,30 @@ function App() {
   }, [dispatch]);
 
   if (!currency) {
-    return (<FirstCurrencySelect />);
+    return (
+      <Suspense fallback={<Loader />}>
+        <FirstCurrencySelect />
+      </Suspense>
+    );
   }
 
   return (
     <div className="App">
       <Header />
       <Container
-        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 2 }}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 2,
+        }}
       >
-        <Routes>
-          <Route path="/" element={<CurrenciesPage />} />
-          <Route path="/converter" element={<ConverterPage />} />
-        </Routes>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<CurrenciesPage />} />
+            <Route path="/converter" element={<ConverterPage />} />
+          </Routes>
+        </Suspense>
       </Container>
     </div>
   );
