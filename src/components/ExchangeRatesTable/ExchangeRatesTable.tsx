@@ -13,14 +13,14 @@ import { useAppSelector } from '../../store/hooks';
 
 const ExchangeRatesTable = () => {
   const { currency } = useAppSelector((state) => state.currencyState);
-  const { exchangeRates } = useAppSelector(
-    (state) => state.exchangeState,
-  );
+  const { exchangeRates } = useAppSelector((state) => state.exchangeState);
+
+  console.log(JSON.stringify(exchangeRates));
 
   const relativeRates = getRelativeExchangeRates(currency, exchangeRates);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ height: 600 }}>
       <Table>
         <TableHead>
           <TableRow>

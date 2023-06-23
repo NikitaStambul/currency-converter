@@ -1,19 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
 import CurrenciesPage from './pages/CurrenciesPage';
 import { Container } from '@mui/material';
-import { useAppDispatch } from './store/hooks';
-import { fetchCurrency } from './store/slices/currencySlice';
-import { fetchExchange } from './store/slices/exchangeSlice';
+import { useAppSelector } from './store/hooks';
+import FirstCurrencySelect from './components/FirstCurrencySelect/FirstCurrencySelect';
+import ConverterPage from './pages/ConverterPage/ConverterPage';
 
 function App() {
-  const dispatch = useAppDispatch();
+  const { currency } = useAppSelector(state => state.currencyState);
 
-  useEffect(() => {
-    dispatch(fetchCurrency());
-    dispatch(fetchExchange());
-  }, [dispatch]);
+  if (!currency) {
+    return (<FirstCurrencySelect />);
+  }
 
   return (
     <div className="App">
@@ -23,6 +22,7 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<CurrenciesPage />} />
+          <Route path="/converter" element={<ConverterPage />} />
         </Routes>
       </Container>
     </div>

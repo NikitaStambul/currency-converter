@@ -1,8 +1,21 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import NavLink from '../NavLink';
+import CurrencySelect from '../CurrencySelect/CurrencySelect';
+import { setCurrency } from '../../store/slices/currencySlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 const Header = () => {
+  const { currency } = useAppSelector((state) => state.currencyState);
+  const dispatch = useAppDispatch();
+
+  const handleSelect = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: string | null,
+  ) => {
+    dispatch(setCurrency(value));
+  };
+
   return (
     <Box
       display="flex"
@@ -11,8 +24,11 @@ const Header = () => {
       bgcolor="#90a4ae"
       height={60}
     >
-      <NavLink to="/">Currencies</NavLink>
-      <NavLink to="/converter">Converter</NavLink>
+      <Stack direction="row" height='100%' mr={2}>
+        <NavLink to="/">Currencies</NavLink>
+        <NavLink to="/converter">Converter</NavLink>
+      </Stack>
+      <CurrencySelect selected={currency} onSelect={handleSelect} />
     </Box>
   );
 };
