@@ -12,13 +12,13 @@ export const fetchCurrency = createAsyncThunk(
 );
 
 export interface State {
-  currency: string | null;
+  currency?: string;
   isLoaded: boolean;
   hasError: boolean;
 }
 
 const initialState: State = {
-  currency: null,
+  currency: undefined,
   isLoaded: false,
   hasError: false,
 };

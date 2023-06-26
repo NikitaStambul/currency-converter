@@ -6,7 +6,7 @@ const NavLink = styled(Link)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   height: '100%',
-  padding: 8,
+  padding: 16,
   textDecoration: 'none',
   transition: 'color 0.3s ease-in-out',
   '&:hover': {
@@ -15,7 +15,11 @@ const NavLink = styled(Link)(({ theme }) => ({
   '&.active': {
     color: theme.palette.primary.main,
     borderBottom: `4px solid ${theme.palette.primary.main}`,
-    paddingBottom: '4px',
+    paddingBottom: '12px',
+
+    '&:hover': {
+      color: 'white',
+    },
   },
 }));
 

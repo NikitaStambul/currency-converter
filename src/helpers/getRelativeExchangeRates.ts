@@ -1,6 +1,6 @@
 import { ExchangeRates } from "../api/exchange";
 
-export function getRelativeExchangeRates(myCurrency: string | null, exchangeRates: ExchangeRates) {
+export function getRelativeExchangeRates(myCurrency: string | undefined, exchangeRates: ExchangeRates) {
   const multiplier = exchangeRates[myCurrency || 'USD'];
   const resultRates: ExchangeRates = {}
 

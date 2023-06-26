@@ -4,16 +4,16 @@ import { currencyKeys } from '../../constants/currencyKeys';
 
 const CurrencySelect = ({
   selected,
+  label,
   onSelect,
 }: {
-  selected: string | null;
+  selected?: string;
+  label?: string;
   onSelect: (
     event: React.SyntheticEvent<Element, Event>,
-    value: string | null,
+    value?: string,
   ) => void;
 }) => {
- 
-
   return (
     <Autocomplete
       sx={{
@@ -22,9 +22,14 @@ const CurrencySelect = ({
       size="small"
       options={currencyKeys}
       value={selected}
+      disableClearable
       onChange={onSelect}
       renderInput={(params) => (
-        <TextField {...params} label="Select Currency" variant="outlined" />
+        <TextField
+          {...params}
+          label={label}
+          variant="outlined"
+        />
       )}
     />
   );

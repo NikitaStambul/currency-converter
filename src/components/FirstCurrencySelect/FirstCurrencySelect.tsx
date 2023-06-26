@@ -11,7 +11,7 @@ const FirstCurrencySelect = () => {
 
   const handleSelect = (
     event: React.SyntheticEvent<Element, Event>,
-    value: string | null,
+    value?: string,
   ) => {
     dispatch(setCurrency(value));
   };
