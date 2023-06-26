@@ -35,7 +35,7 @@ const ExchangeRatesTable = ({ filter }: { filter: string[] }) => {
   })();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ width: '100%', maxWidth: '400px'}}>
       <Table>
         <TableHead>
           <TableRow>

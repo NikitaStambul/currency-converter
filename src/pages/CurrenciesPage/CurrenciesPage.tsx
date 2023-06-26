@@ -24,7 +24,7 @@ const CurrenciesPage = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={2} maxHeight='calc(100dvh - 100px)'>
+    <Box display="flex" flexDirection="column" alignItems="center" gap={2} maxHeight='calc(100dvh - 100px)' width='400px'>
       <Stack direction="row" alignItems="center" gap={2}>
         <Typography variant="h6">Select currency:</Typography>
         <CurrencySelect selected={currency} onSelect={handleSelect} />
