@@ -9,8 +9,10 @@ const NavLink = styled(Link)(({ theme }) => ({
   padding: 16,
   textDecoration: 'none',
   transition: 'color 0.3s ease-in-out',
+  userSelect: 'none',
   '&:hover': {
     backgroundColor: theme.palette.primary.light,
+    color: 'white',
   },
   '&.active': {
     color: theme.palette.primary.main,

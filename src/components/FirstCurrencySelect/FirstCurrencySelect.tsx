@@ -30,7 +30,7 @@ const FirstCurrencySelect = () => {
         <Typography variant="h4">Select your currency:</Typography>
         <GuessedCurrency />
         <Typography variant="h6">If not, select one:</Typography>
-        <CurrencySelect selected={currency} onSelect={handleSelect} />
+        <CurrencySelect selected={currency} onSelect={handleSelect} label='Select:' />
       </Paper>
     </Box>
   );
