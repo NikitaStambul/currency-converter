@@ -17,7 +17,9 @@ const Converter = () => {
   const { exchangeRates } = useAppSelector((state) => state.exchangeState);
   const dispatch = useAppDispatch();
 
-  const [toCurrency, setToCurrency] = useState<string | undefined>('USD');
+  const [toCurrency, setToCurrency] = useState<string | undefined>(
+    currency === 'USD' ? 'UAH' : 'USD',
+  );
   const [amount, setAmount] = useState('');
 
   const handleToSelect = (
@@ -67,7 +69,13 @@ const Converter = () => {
         gap={2}
         padding={2}
       >
-        <Stack direction="row" justifyContent="space-between" gap={2} width='100%'>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          gap={2}
+          width="100%"
+        >
           <Stack gap={2}>
             <CurrencySelect
               label="From"
@@ -75,6 +83,10 @@ const Converter = () => {
               onSelect={handleFromSelect}
             />
           </Stack>
+
+          <IconButton onClick={handleSwapClick}>
+            <Swap />
+          </IconButton>
 
           <Stack gap={2}>
             <CurrencySelect
@@ -99,9 +111,14 @@ const Converter = () => {
               p={1}
             >
               <TextField
-                size="small"
+                InputProps={{
+                  sx: {
+                    fontSize: '1.5rem',
+                  },
+                }}
                 value={amount}
                 variant="standard"
+                placeholder={`0.00 ${currency}`}
                 onChange={(e) => setAmount(e.target.value)}
               />
               <Typography variant="caption">{`1 ${currency} = ${exchangeRate?.toFixed(
@@ -109,10 +126,6 @@ const Converter = () => {
               )} ${toCurrency}`}</Typography>
             </Stack>
           </Stack>
-
-          <IconButton onClick={handleSwapClick} sx={{marginBottom: -3}}>
-            <Swap />
-          </IconButton>
 
           <Stack>
             <Typography>Result</Typography>
@@ -123,8 +136,12 @@ const Converter = () => {
               p={1}
             >
               <TextField
-                size="small"
-                value={result?.toFixed(2)}
+                InputProps={{
+                  sx: {
+                    fontSize: '1.5rem',
+                  },
+                }}
+                value={result?.toFixed(2) + ' ' + (toCurrency || '')}
                 variant="standard"
                 disabled
                 onChange={(e) => setAmount(e.target.value)}

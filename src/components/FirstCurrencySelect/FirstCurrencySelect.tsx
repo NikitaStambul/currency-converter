@@ -17,12 +17,7 @@ const FirstCurrencySelect = () => {
   };
 
   return (
-    <Box
-      mt={8}
-      width="100vw"
-      display="flex"
-      justifyContent="center"
-    >
+    <Box mt={8} width="100vw" display="flex" justifyContent="center">
       <Paper
         sx={{
           display: 'flex',

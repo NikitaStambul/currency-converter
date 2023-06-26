@@ -10,15 +10,32 @@ import {
 } from '@mui/material';
 import { getRelativeExchangeRates } from '../../helpers/getRelativeExchangeRates';
 import { useAppSelector } from '../../store/hooks';
+import { ExchangeRates } from '../../api/exchange';
 
-const ExchangeRatesTable = () => {
+const ExchangeRatesTable = ({ filter }: { filter: string[] }) => {
   const { currency } = useAppSelector((state) => state.currencyState);
   const { exchangeRates } = useAppSelector((state) => state.exchangeState);
 
   const relativeRates = getRelativeExchangeRates(currency, exchangeRates);
 
+  const visibleRates = (() => {
+    const visible: ExchangeRates = {};
+
+    for (const key in relativeRates) {
+      if (filter.includes(key)) {
+        visible[key] = relativeRates[key];
+      }
+    }
+
+    if (!Object.entries(visible).length) {
+      return relativeRates;
+    }
+
+    return visible;
+  })();
+
   return (
-    <TableContainer component={Paper} sx={{ height: 'calc(100vh - 150px)' }}>
+    <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
@@ -27,7 +44,7 @@ const ExchangeRatesTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Object.entries(relativeRates).map(([currencyCode, number]) => (
+          {Object.entries(visibleRates).map(([currencyCode, number]) => (
             <TableRow key={currencyCode}>
               <TableCell>{currencyCode}</TableCell>
               <TableCell>{number.toFixed(4)}</TableCell>

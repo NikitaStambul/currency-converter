@@ -17,7 +17,7 @@ const CurrencySelect = ({
   return (
     <Autocomplete
       sx={{
-        width: 180,
+        width: 120,
       }}
       size="small"
       options={currencyKeys}
