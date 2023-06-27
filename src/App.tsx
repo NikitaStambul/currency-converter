@@ -13,7 +13,9 @@ const ConverterPage = lazy(() => import('./pages/ConverterPage'));
 const CurrenciesPage = lazy(() => import('./pages/CurrenciesPage'));
 
 function App() {
-  const { currency } = useAppSelector((state) => state.currencyState);
+  const { fromCurrency: currency } = useAppSelector(
+    (state) => state.currencyState,
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {

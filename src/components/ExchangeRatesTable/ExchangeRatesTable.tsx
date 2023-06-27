@@ -12,17 +12,18 @@ import { getRelativeExchangeRates } from '../../helpers/getRelativeExchangeRates
 import { useAppSelector } from '../../store/hooks';
 import { ExchangeRates } from '../../api/exchange';
 
-const ExchangeRatesTable = ({ filter }: { filter: string[] }) => {
-  const { currency } = useAppSelector((state) => state.currencyState);
+const ExchangeRatesTable = () => {
+  const { selectedCurrencies } = useAppSelector(state => state.multipleSelectState);
+  const { fromCurrency } = useAppSelector((state) => state.currencyState);
   const { exchangeRates } = useAppSelector((state) => state.exchangeState);
 
-  const relativeRates = getRelativeExchangeRates(currency, exchangeRates);
+  const relativeRates = getRelativeExchangeRates(fromCurrency, exchangeRates);
 
   const visibleRates = (() => {
     const visible: ExchangeRates = {};
 
     for (const key in relativeRates) {
-      if (filter.includes(key)) {
+      if (selectedCurrencies.includes(key)) {
         visible[key] = relativeRates[key];
       }
     }
@@ -35,7 +36,7 @@ const ExchangeRatesTable = ({ filter }: { filter: string[] }) => {
   })();
 
   return (
-    <TableContainer component={Paper} sx={{ width: '100%', maxWidth: '400px'}}>
+    <TableContainer component={Paper} sx={{ width: '100%', maxWidth: '400px' }}>
       <Table>
         <TableHead>
           <TableRow>

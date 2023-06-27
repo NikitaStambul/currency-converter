@@ -9,44 +9,46 @@ import {
 import React, { useState } from 'react';
 import CurrencySelect from '../CurrencySelect/CurrencySelect';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setCurrency } from '../../store/slices/currencySlice';
+import {
+  setFromCurrency,
+  setToCurrency,
+  swapCurrencies,
+} from '../../store/slices/currencySlice';
 import { ReactComponent as Swap } from '../../assets/swap.svg';
 
 const Converter = () => {
-  const { currency } = useAppSelector((state) => state.currencyState);
+  const { fromCurrency, toCurrency } = useAppSelector(
+    (state) => state.currencyState,
+  );
   const { exchangeRates } = useAppSelector((state) => state.exchangeState);
   const dispatch = useAppDispatch();
 
-  const [toCurrency, setToCurrency] = useState<string | undefined>(
-    currency === 'USD' ? 'UAH' : 'USD',
-  );
   const [amount, setAmount] = useState('');
 
   const handleToSelect = (
     event: React.SyntheticEvent<Element, Event>,
     value?: string,
   ) => {
-    setToCurrency(value);
+    dispatch(setToCurrency(value));
   };
 
   const handleFromSelect = (
     event: React.SyntheticEvent<Element, Event>,
     value?: string,
   ) => {
-    dispatch(setCurrency(value));
+    dispatch(setFromCurrency(value));
   };
 
   const handleSwapClick = () => {
-    dispatch(setCurrency(toCurrency));
-    setToCurrency(currency);
+    dispatch(swapCurrencies());
   };
 
   const exchangeRate = (() => {
-    if (!currency || !toCurrency) {
+    if (!fromCurrency || !toCurrency) {
       return 1;
     }
 
-    const fromRate = exchangeRates[currency];
+    const fromRate = exchangeRates[fromCurrency];
     const toRate = exchangeRates[toCurrency];
 
     return toRate / fromRate;
@@ -79,7 +81,7 @@ const Converter = () => {
           <Stack gap={2}>
             <CurrencySelect
               label="From"
-              selected={currency}
+              selected={fromCurrency}
               onSelect={handleFromSelect}
             />
           </Stack>
@@ -118,10 +120,10 @@ const Converter = () => {
                 }}
                 value={amount}
                 variant="standard"
-                placeholder={`0.00 ${currency}`}
+                placeholder={`0.00 ${fromCurrency}`}
                 onChange={(e) => setAmount(e.target.value)}
               />
-              <Typography variant="caption">{`1 ${currency} = ${exchangeRate?.toFixed(
+              <Typography variant="caption">{`1 ${fromCurrency} = ${exchangeRate?.toFixed(
                 2,
               )} ${toCurrency}`}</Typography>
             </Stack>
@@ -148,7 +150,7 @@ const Converter = () => {
               />
               <Typography variant="caption">{`1 ${toCurrency} = ${(
                 1 / exchangeRate
-              ).toFixed(2)} ${currency}`}</Typography>
+              ).toFixed(2)} ${fromCurrency}`}</Typography>
             </Stack>
           </Stack>
         </Stack>

@@ -1,56 +1,40 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getLocaleData } from '../../api/locale';
+import { createSlice } from '@reduxjs/toolkit';
 import { LocalStorageKeys } from '../LocalStorageKeys';
 
-export const fetchCurrency = createAsyncThunk(
-  'currency/fetchCurrency',
-  async () => {
-    const { data } = await getLocaleData();
-
-    return data.currency;
-  },
-);
-
 export interface State {
-  currency?: string;
-  isLoaded: boolean;
-  hasError: boolean;
+  fromCurrency?: string;
+  toCurrency?: string;
 }
 
 const initialState: State = {
-  currency: undefined,
-  isLoaded: false,
-  hasError: false,
+  fromCurrency: undefined,
+  toCurrency: undefined,
 };
 
 const stateFromStorage: State = JSON.parse(
-  localStorage.getItem(LocalStorageKeys.CurrencyState) || JSON.stringify(initialState),
+  localStorage.getItem(LocalStorageKeys.CurrencyState) ||
+    JSON.stringify(initialState),
 );
 
-const localeSlice = createSlice({
+const currencySlice = createSlice({
   name: 'currency',
   initialState: stateFromStorage,
   reducers: {
-    setCurrency: (state, action) => {
-      state.currency = action.payload;
+    setFromCurrency: (state, action) => {
+      state.fromCurrency = action.payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchCurrency.pending, (state) => {
-        state.isLoaded = false;
-      })
-      .addCase(fetchCurrency.fulfilled, (state, action) => {
-        state.isLoaded = true;
-        state.currency = action.payload;
-      })
-      .addCase(fetchCurrency.rejected, (state) => {
-        state.isLoaded = true;
-        state.hasError = true;
-      });
+    setToCurrency: (state, action) => {
+      state.toCurrency = action.payload;
+    },
+    swapCurrencies: (state) => {
+      const temp = state.fromCurrency;
+
+      state.fromCurrency = state.toCurrency;
+      state.toCurrency = temp;
+    },
   },
 });
 
-export const { setCurrency } = localeSlice.actions;
+export const { setFromCurrency, setToCurrency, swapCurrencies } = currencySlice.actions;
 
-export default localeSlice.reducer;
+export default currencySlice.reducer;

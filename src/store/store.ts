@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import currencyReducer from './slices/currencySlice';
 import exchangeReducer from './slices/exchangeSlice';
+import multipleSelectReducer from './slices/multipleSelectSlice';
 import { Middleware } from 'redux';
 import { LocalStorageKeys } from './LocalStorageKeys';
 
@@ -19,6 +20,7 @@ export const store = configureStore({
   reducer: {
     currencyState: currencyReducer,
     exchangeState: exchangeReducer,
+    multipleSelectState: multipleSelectReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
