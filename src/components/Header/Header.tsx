@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Container, Paper, Stack } from '@mui/material';
-import NavLink from '../NavLink';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import Logo from '../Logo';
+import NavLink from '../NavLink/NavLink';
 
 const Header = () => {
   return (
     <Paper>
-      <Container maxWidth='sm'>
+      <Container maxWidth="tablet">
         <Box
           display="flex"
           alignItems="center"
@@ -15,7 +15,7 @@ const Header = () => {
           gap={2}
         >
           <Logo />
-          <Stack direction="row" height="100%">
+          <Stack direction="row" height="100%" alignItems="center">
             <NavLink to="/">Currencies</NavLink>
             <NavLink to="/converter">Converter</NavLink>
           </Stack>

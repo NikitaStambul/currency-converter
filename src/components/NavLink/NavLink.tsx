@@ -2,26 +2,38 @@ import { styled } from '@mui/material';
 import { NavLink as Link } from 'react-router-dom';
 
 const NavLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  display: 'flex',
-  alignItems: 'center',
-  height: '100%',
-  padding: 16,
+  position: 'relative',
+  borderRadius: 8,
+  padding: '8px 16px',
+  lineHeight: '1rem',
   textDecoration: 'none',
-  transition: 'color 0.3s ease-in-out',
-  userSelect: 'none',
-  '&:hover': {
-    backgroundColor: theme.palette.primary.light,
-    color: 'white',
+  color: theme.palette.text.secondary,
+
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    width: 'calc(100% - 32px)',
+    height: '4px',
+    borderRadius: 10,
+    left: 16,
+    bottom: -16,
+    transition: theme.transitions.create('all'),
+    opacity: 0,
   },
+
   '&.active': {
     color: theme.palette.primary.main,
-    borderBottom: `4px solid ${theme.palette.primary.main}`,
-    paddingBottom: '12px',
 
-    '&:hover': {
-      color: 'white',
+    '&::after': {
+      opacity: 1,
+      background: `linear-gradient(to right, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
     },
+  },
+
+  '&:hover': {
+    color: theme.palette.primary.main,
+    background: theme.palette.background.secondary,
+    transition: theme.transitions.create('all'),
   },
 }));
 
