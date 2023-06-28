@@ -1,6 +1,5 @@
 import React from 'react';
 import { Divider, Stack, Typography, styled } from '@mui/material';
-import { useAppSelector } from '../store/hooks';
 
 const Main = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -13,8 +12,6 @@ const Amount = styled(Typography)(({ theme }) => ({
 }));
 
 const ConverterCard = ({ type }: { type: 'from' | 'to' }) => {
-  const { fromAmount, toAmount } = useAppSelector(state => state.amountState);
-
   return (
     <Main>
       <Stack>

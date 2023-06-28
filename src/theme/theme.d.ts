@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { BreakpointOverrides, Theme, ThemeOptions, CssBaseline, useMediaQuery, PaletteOptions, PaletteColor, Palette, PaletteColorOptions } from '@mui/material';
+import { BreakpointOverrides, PaletteColor, PaletteColorOptions } from '@mui/material';
 import React from 'react';
 
 declare module '@mui/material' {
