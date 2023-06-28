@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Paper, Stack } from '@mui/material';
-import Logo from '../Logo';
-import NavLink from '../NavLink/NavLink';
+import Logo from './Logo';
+import NavLink from './NavLink';
 
 const Header = () => {
   return (

@@ -8,7 +8,7 @@ export interface State {
 
 const initialState: State = {
   fromCurrency: undefined,
-  toCurrency: undefined,
+  toCurrency: 'USD',
 };
 
 const stateFromStorage: State = JSON.parse(
@@ -21,10 +21,20 @@ const currencySlice = createSlice({
   initialState: stateFromStorage,
   reducers: {
     setFromCurrency: (state, action) => {
+      const temp = state.fromCurrency;
       state.fromCurrency = action.payload;
+
+      if (action.payload === state.toCurrency) {
+        state.toCurrency = temp;
+      }
     },
     setToCurrency: (state, action) => {
+      const temp = state.toCurrency;
       state.toCurrency = action.payload;
+
+      if (action.payload === state.fromCurrency) {
+        state.fromCurrency = temp;
+      }
     },
     swapCurrencies: (state) => {
       const temp = state.fromCurrency;

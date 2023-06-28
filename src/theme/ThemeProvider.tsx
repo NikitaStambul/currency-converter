@@ -17,6 +17,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       text: {
         primary: '#3f3f3f',
         secondary: '#6b7280',
+        dark: '#111827',
       },
       background: {
         default: '#ffffff',
@@ -36,7 +37,16 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     typography: {
       fontFamily: `"Inter", sans-serif`,
       fontSize: 16
-    }
+    },
+    components: {
+      MuiContainer: {
+        styleOverrides: {
+          root: {
+            padding: '0 40px',
+          },
+        },
+      },
+    },
   });
 
   return (

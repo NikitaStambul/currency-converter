@@ -1,8 +1,8 @@
 import { Box, Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { getLocaleData } from '../../api/locale';
-import { useAppDispatch } from '../../store/hooks';
-import { setFromCurrency } from '../../store/slices/currencySlice';
+import { getLocaleData } from '../api/locale';
+import { useAppDispatch } from '../store/hooks';
+import { setFromCurrency } from '../store/slices/currencySlice';
 
 const GuessedCurrency = () => {
   const dispatch = useAppDispatch();

@@ -1,15 +1,17 @@
 import React from 'react';
-import ExchangeRatesTable from '../../components/ExchangeRatesTable';
+import ExchangeRatesTable from '../components/ExchangeRatesTable';
 import { Box, Stack, Typography } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import CurrencySelect from '../../components/CurrencySelect/CurrencySelect';
-import { setFromCurrency } from '../../store/slices/currencySlice';
-import MultipleCurrenciesSelect from '../../components/MultipleCurrenciesSelect';
-import { setSelectedCurrencies } from '../../store/slices/multipleSelectSlice';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import CurrencySelect from '../components/CurrencySelect';
+import { setFromCurrency } from '../store/slices/currencySlice';
+import MultipleCurrenciesSelect from '../components/MultipleCurrenciesSelect';
+import { setSelectedCurrencies } from '../store/slices/multipleSelectSlice';
 
 const CurrenciesPage = () => {
   const { fromCurrency } = useAppSelector((state) => state.currencyState);
-  const { selectedCurrencies } = useAppSelector((state) => state.multipleSelectState);
+  const { selectedCurrencies } = useAppSelector(
+    (state) => state.multipleSelectState,
+  );
   const dispatch = useAppDispatch();
 
   const handleSelect = (
@@ -37,7 +39,7 @@ const CurrenciesPage = () => {
     >
       <Stack direction="row" alignItems="center" gap={2}>
         <Typography variant="h6">Select currency:</Typography>
-        <CurrencySelect selected={fromCurrency} onSelect={handleSelect} />
+        <CurrencySelect type="from" />
       </Stack>
       <MultipleCurrenciesSelect
         selected={selectedCurrencies}

@@ -8,9 +8,9 @@ import {
   TableRow,
   Paper,
 } from '@mui/material';
-import { getRelativeExchangeRates } from '../../helpers/getRelativeExchangeRates';
-import { useAppSelector } from '../../store/hooks';
-import { ExchangeRates } from '../../api/exchange';
+import { getRelativeExchangeRates } from '../helpers/getRelativeExchangeRates';
+import { useAppSelector } from '../store/hooks';
+import { ExchangeRates } from '../api/exchange';
 
 const ExchangeRatesTable = () => {
   const { selectedCurrencies } = useAppSelector(state => state.multipleSelectState);

@@ -7,14 +7,10 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
-import CurrencySelect from '../CurrencySelect/CurrencySelect';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {
-  setFromCurrency,
-  setToCurrency,
-  swapCurrencies,
-} from '../../store/slices/currencySlice';
-import { ReactComponent as Swap } from '../../assets/swap.svg';
+import CurrencySelect from './CurrencySelect';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { swapCurrencies } from '../store/slices/currencySlice';
+import { ReactComponent as Swap } from '../assets/swap.svg';
 
 const Converter = () => {
   const { fromCurrency, toCurrency } = useAppSelector(
@@ -24,20 +20,6 @@ const Converter = () => {
   const dispatch = useAppDispatch();
 
   const [amount, setAmount] = useState('');
-
-  const handleToSelect = (
-    event: React.SyntheticEvent<Element, Event>,
-    value?: string,
-  ) => {
-    dispatch(setToCurrency(value));
-  };
-
-  const handleFromSelect = (
-    event: React.SyntheticEvent<Element, Event>,
-    value?: string,
-  ) => {
-    dispatch(setFromCurrency(value));
-  };
 
   const handleSwapClick = () => {
     dispatch(swapCurrencies());
@@ -78,25 +60,13 @@ const Converter = () => {
           gap={2}
           width="100%"
         >
-          <Stack gap={2}>
-            <CurrencySelect
-              label="From"
-              selected={fromCurrency}
-              onSelect={handleFromSelect}
-            />
-          </Stack>
+          <CurrencySelect type="from" />
 
           <IconButton onClick={handleSwapClick}>
             <Swap />
           </IconButton>
 
-          <Stack gap={2}>
-            <CurrencySelect
-              label="To"
-              selected={toCurrency}
-              onSelect={handleToSelect}
-            />
-          </Stack>
+          <CurrencySelect type="to" />
         </Stack>
         <Stack
           direction="row"

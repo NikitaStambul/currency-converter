@@ -27,15 +27,15 @@ declare module '@mui/material' {
       breakpoint?: BreakpointOverrides;
     };
   }
-}
 
-declare module '@mui/material/styles' {
+  interface TypeText {
+    dark: string;
+  }
+
   interface TypeBackground {
     secondary: string;
   }
-}
 
-declare module '@mui/material/styles' {
   interface Palette {
     accent?: PaletteColor;
   }

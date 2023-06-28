@@ -4,7 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import { Container } from '@mui/material';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { fetchExchange } from './store/slices/exchangeSlice';
-import Loader from './components/Loader/Loader';
+import Loader from './components/Loader';
+import Credits from './components/Credits';
 
 const FirstCurrencySelect = lazy(
   () => import('./components/FirstCurrencySelect'),
@@ -37,6 +38,7 @@ function App() {
           alignItems: 'center',
           justifyContent: 'center',
           padding: 2,
+          marginBottom: 5,
         }}
       >
         <Suspense fallback={<Loader />}>
@@ -46,6 +48,7 @@ function App() {
           </Routes>
         </Suspense>
       </Container>
+      <Credits />
     </div>
   );
 }
