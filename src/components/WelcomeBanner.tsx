@@ -12,23 +12,6 @@ const StyledStack = styled(Stack)(({ theme }) => ({
   padding: 40,
 }));
 
-const SelectedCurrencyText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  fontSize: '1.5rem',
-  fontWeight: 600,
-  textAlign: 'center',
-}));
-
-const StyledCurrency = styled('span')(({ theme }) => ({
-  color: theme.palette.primary.main,
-}));
-
-const Text = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  fontWeight: 500,
-  textAlign: 'center',
-}));
-
 const StyledButton = styled(Button)(({ theme }) => ({
   padding: '8px 48px',
   color: '#ffffff',
@@ -63,18 +46,21 @@ const WelcomeBanner = () => {
 
   return (
     <StyledStack spacing={5}>
-      <SelectedCurrencyText>
-        Selected currency: <StyledCurrency>{guessedCurrency}</StyledCurrency>
-      </SelectedCurrencyText>
+      <Typography variant="section-headline">
+        {'Selected currency: '}
+        <Typography variant="section-headline" color="primary.main">
+          {guessedCurrency}
+        </Typography>
+      </Typography>
       <Stack spacing={2.5} alignItems="center">
-        <Text>
+        <Typography>
           Based on your location, we assume
           <br /> your currency is {guessedCurrency}, is it correct?
-        </Text>
+        </Typography>
         <StyledButton onClick={handleAcceptGuess}>Yes! 👌</StyledButton>
       </Stack>
       <Stack spacing={2.5} alignItems="center">
-        <Text>If not, select one from the list below 😉</Text>
+        <Typography>If not, select one from the list below 😉</Typography>
         <CurrencySelect isFrom placeholder={guessedCurrency} />
       </Stack>
     </StyledStack>

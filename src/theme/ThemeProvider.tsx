@@ -1,5 +1,3 @@
-'use client';
-
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { ThemeProvider as Provider, createTheme } from '@mui/material/styles';
@@ -36,7 +34,25 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     },
     typography: {
       fontFamily: `"Inter", sans-serif`,
-      fontSize: 16
+      fontSize: 16,
+      headline: {
+        color: '#111827',
+        textAlign: 'center',
+        fontSize: '2rem',
+        fontWeight: 700,
+        lineHeight: '120%',
+      },
+      'section-headline': {
+        textAlign: 'center',
+        fontSize: '1.5rem',
+        fontWeight: 600,
+      },
+      'footer-info': {
+        textAlign: 'center',
+        fontSize: 12,
+        fontStyle: 'italic',
+        lineHeight: '120%',
+      }
     },
     components: {
       MuiContainer: {

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, Container, Paper, Stack } from '@mui/material';
+import { Box, Container, IconButton, Stack } from '@mui/material';
 import Logo from './Logo';
 import NavLink from './NavLink';
+import { ReactComponent as MenuIcon } from '../assets/menu.svg';
 
 const Header = () => {
   return (
-    <Paper>
+    <Box boxShadow={1}>
       <Container maxWidth="tablet">
         <Box
           display="flex"
@@ -13,16 +14,23 @@ const Header = () => {
           justifyContent="space-between"
           height={60}
           gap={2}
-          mb={10}
         >
           <Logo />
-          <Stack direction="row" height="100%" alignItems="center">
+          <Stack
+            direction="row"
+            height="100%"
+            alignItems="center"
+            display={{ mobile: 'none', tablet: 'flex' }}
+          >
             <NavLink to="/">Currencies</NavLink>
             <NavLink to="/converter">Converter</NavLink>
           </Stack>
+          <IconButton sx={{ display: { mobile: 'flex', tablet: 'none' } }}>
+            <MenuIcon />
+          </IconButton>
         </Box>
       </Container>
-    </Paper>
+    </Box>
   );
 };
 

@@ -1,23 +1,15 @@
-import { Stack, Typography, styled } from '@mui/material';
 import React from 'react';
-
-const Rights = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  fontSize: 12,
-  fontWeight: 300,
-  fontStyle: 'italic',
-  textAlign: 'center',
-}));
-
-const Creds = styled(Rights)(({ theme }) => ({
-  color: theme.palette.primary.main,
-}));
+import { Stack, Typography } from '@mui/material';
 
 const Credits = () => {
   return (
     <Stack spacing="10px">
-      <Rights>© 2023 Currency Converter Inc.</Rights>
-      <Creds>Dev by Mykyta Stambul / Design by Igor Kochmak</Creds>
+      <Typography variant="footer-info" color="text.secondary">
+        © 2023 Currency Converter Inc.
+      </Typography>
+      <Typography variant="footer-info" color="primary.main">
+        Dev by Mykyta Stambul / Design by Igor Kochmak
+      </Typography>
     </Stack>
   );
 };

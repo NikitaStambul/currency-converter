@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { BreakpointOverrides, PaletteColor, PaletteColorOptions } from '@mui/material';
+import { PaletteColor, PaletteColorOptions } from '@mui/material';
 import React from 'react';
 
 declare module '@mui/material' {
@@ -12,9 +12,6 @@ declare module '@mui/material' {
     mobile: true;
     tablet: true;
   }
-}
-
-declare module '@mui/material' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -42,5 +39,23 @@ declare module '@mui/material' {
 
   interface PaletteOptions {
     accent?: PaletteColorOptions;
+  }
+
+  interface TypographyVariants {
+    headline: React.CSSProperties;
+    'section-headline': React.CSSProperties;
+    'footer-info': React.CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    headline?: React.CSSProperties;
+    'section-headline'?: React.CSSProperties;
+    'footer-info'?: React.CSSProperties;
+  }
+
+  interface TypographyPropsVariantOverrides {
+    headline: true;
+    'section-headline': true;
+    'footer-info': true;
   }
 }

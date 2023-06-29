@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, TextField, Typography, styled } from '@mui/material';
+import { Stack, Typography, styled } from '@mui/material';
 import CurrencySelect from './CurrencySelect';
 import { useAppSelector } from '../store/hooks';
 import CurrencyInput from './CurrencyInput';
@@ -14,8 +14,6 @@ const Main = styled(Stack)(({ theme }) => ({
 const Label = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
 }));
-
-
 
 const Tooltip = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,

@@ -1,11 +1,11 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
-import { Container } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { fetchExchange } from './store/slices/exchangeSlice';
 import Loader from './components/Loader';
-import Credits from './components/Credits';
+import Footer from './components/Footer';
 
 const FirstCurrencySelect = lazy(
   () => import('./components/FirstCurrencySelect'),
@@ -30,12 +30,15 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <Stack minHeight="100dvh" justifyContent="space-between">
       <Header />
       <Container
         sx={{
-          padding: '2px 0',
-          marginBottom: 5,
+          padding: '60px 0',
+          marginBottom: 0,
+          minHeight: 600,
+          flex: 1,
+          maxHeight: 'calc(100dvh - 140px)',
         }}
         maxWidth="tablet"
       >
@@ -46,8 +49,8 @@ function App() {
           </Routes>
         </Suspense>
       </Container>
-      <Credits />
-    </div>
+      <Footer />
+    </Stack>
   );
 }
 

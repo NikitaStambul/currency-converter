@@ -13,12 +13,12 @@ const Main = styled(Stack)(({ theme }) => ({
 
 const ConverterPage = () => {
   return (
-    <>
+    <Stack spacing={5}>
       <Prompt />
       <Main>
         <Converter />
       </Main>
-    </>
+    </Stack>
   );
 };
 
