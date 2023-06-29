@@ -1,8 +1,8 @@
 import React from 'react';
 import { ReactComponent as Chevron } from '../../assets/arrow-down.svg';
 import { Autocomplete } from '@mui/material';
-import { currencyKeys } from '../constants/currencyKeys';
 import { styled } from '@mui/material';
+import { currencies } from '../constants/currencies';
 
 const CustomInput = styled('input')(({ theme }) => ({
   position: 'relative',
@@ -36,7 +36,7 @@ const NewSelect = ({
 }) => {
   return (
     <Autocomplete
-      options={currencyKeys}
+      options={currencies.map((cur) => cur.abbreviation)}
       value={value}
       renderInput={(params) => (
         <InputContainer ref={params.InputProps.ref}>

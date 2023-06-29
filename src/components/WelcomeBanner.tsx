@@ -75,7 +75,7 @@ const WelcomeBanner = () => {
       </Stack>
       <Stack spacing={2.5} alignItems="center">
         <Text>If not, select one from the list below 😉</Text>
-        <CurrencySelect type="from" placeholder={guessedCurrency} />
+        <CurrencySelect isFrom placeholder={guessedCurrency} />
       </Stack>
     </StyledStack>
   );

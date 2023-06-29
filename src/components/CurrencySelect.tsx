@@ -1,8 +1,8 @@
 import React from 'react';
 import { Autocomplete, TextField, styled } from '@mui/material';
-import { currencyKeys } from '../constants/currencyKeys';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setFromCurrency, setToCurrency } from '../store/slices/currencySlice';
+import { currencies } from '../constants/currencies';
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInput-root .MuiInput-input': {
@@ -22,10 +22,10 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const CurrencySelect = ({
-  type,
+  isFrom = false,
   placeholder,
 }: {
-  type: 'from' | 'to';
+  isFrom?: boolean;
   placeholder?: string;
 }) => {
   const { fromCurrency, toCurrency } = useAppSelector(
@@ -37,7 +37,7 @@ const CurrencySelect = ({
     event: React.SyntheticEvent<Element, Event>,
     value?: string,
   ) => {
-    if (type === 'from') {
+    if (isFrom) {
       dispatch(setFromCurrency(value));
     } else {
       dispatch(setToCurrency(value));
@@ -47,8 +47,8 @@ const CurrencySelect = ({
   return (
     <Autocomplete
       sx={{ width: 74 }}
-      options={currencyKeys}
-      value={type === 'from' ? fromCurrency : toCurrency}
+      options={currencies.map(cur => cur.abbreviation)}
+      value={isFrom ? fromCurrency : toCurrency}
       disableClearable
       onChange={handleSelect}
       renderInput={(params) => (

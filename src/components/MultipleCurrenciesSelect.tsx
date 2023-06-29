@@ -1,6 +1,6 @@
 import React from 'react';
-import { currencyKeys } from '../constants/currencyKeys';
 import { Autocomplete, TextField } from '@mui/material';
+import { currencies } from '../constants/currencies';
 
 const MultipleCurrenciesSelect = ({
   selected,
@@ -19,7 +19,7 @@ const MultipleCurrenciesSelect = ({
       value={selected}
       onChange={onSelect}
       size="small"
-      options={currencyKeys}
+      options={currencies.map(cur => cur.abbreviation)}
       renderInput={(params) => <TextField {...params} label="To:" />}
     />
   );

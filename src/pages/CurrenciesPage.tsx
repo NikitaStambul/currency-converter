@@ -25,12 +25,11 @@ const CurrenciesPage = () => {
       flexDirection="column"
       alignItems="center"
       gap={2}
-      maxHeight="calc(100dvh - 100px)"
-      width="400px"
+      maxHeight="calc(100dvh - 180px)"
     >
       <Stack direction="row" alignItems="center" gap={2}>
         <Typography variant="h6">Select currency:</Typography>
-        <CurrencySelect type="from" />
+        <CurrencySelect isFrom />
       </Stack>
       <MultipleCurrenciesSelect
         selected={selectedCurrencies}

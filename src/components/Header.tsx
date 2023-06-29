@@ -13,6 +13,7 @@ const Header = () => {
           justifyContent="space-between"
           height={60}
           gap={2}
+          mb={10}
         >
           <Logo />
           <Stack direction="row" height="100%" alignItems="center">

@@ -1,23 +1,70 @@
 import React from 'react';
-import { Divider, Stack, Typography, styled } from '@mui/material';
+import { Stack, TextField, Typography, styled } from '@mui/material';
+import CurrencySelect from './CurrencySelect';
+import { useAppSelector } from '../store/hooks';
+import CurrencyInput from './CurrencyInput';
 
 const Main = styled(Stack)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
+  padding: '12px 32px',
+  background: '#ffffff',
   borderRadius: 16,
-  padding: '12px, 28px',
+  gap: 8,
 }));
 
-const Amount = styled(Typography)(({ theme }) => ({
-
+const Label = styled(Typography)(({ theme }) => ({
+  fontWeight: 600,
 }));
 
-const ConverterCard = ({ type }: { type: 'from' | 'to' }) => {
+
+
+const Tooltip = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  fontSize: 12,
+}));
+
+const BlueAccent = styled('span')(({ theme }) => ({
+  color: theme.palette.primary.main,
+}));
+
+const ConverterCard = ({ isFrom = false }: { isFrom?: boolean }) => {
+  const { fromCurrency, toCurrency } = useAppSelector(
+    (state) => state.currencyState,
+  );
+  const { exchangeRates } = useAppSelector((state) => state.exchangeState);
+
+  const exchangeRate = (() => {
+    if (!fromCurrency || !toCurrency) {
+      return 1;
+    }
+
+    const fromRate = exchangeRates[fromCurrency];
+    const toRate = exchangeRates[toCurrency];
+
+    return toRate / fromRate;
+  })();
+
   return (
     <Main>
-      <Stack>
-        <Amount></Amount>
+      <Stack direction="row" justifyContent="space-between">
+        <Label>{isFrom ? 'From' : 'To'}:</Label>
+        <CurrencySelect isFrom={isFrom} />
       </Stack>
-      <Stack divider={<Divider />}></Stack>
+      <Stack gap={1}>
+        <CurrencyInput isFrom={isFrom} />
+        {isFrom ? (
+          <Tooltip>
+            {`1 ${fromCurrency} = `}
+            <BlueAccent>{exchangeRate.toFixed(3)}</BlueAccent>
+            {` ${toCurrency}`}
+          </Tooltip>
+        ) : (
+          <Tooltip>
+            {`1 ${toCurrency} = `}
+            <BlueAccent>{(1 / exchangeRate).toFixed(3)}</BlueAccent>
+            {` ${fromCurrency}`}
+          </Tooltip>
+        )}
+      </Stack>
     </Main>
   );
 };

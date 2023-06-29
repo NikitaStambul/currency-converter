@@ -34,12 +34,10 @@ function App() {
       <Header />
       <Container
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 2,
+          padding: '2px 0',
           marginBottom: 5,
         }}
+        maxWidth="tablet"
       >
         <Suspense fallback={<Loader />}>
           <Routes>

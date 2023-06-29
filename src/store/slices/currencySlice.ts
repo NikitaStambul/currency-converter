@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { LocalStorageKeys } from '../LocalStorageKeys';
 
 export interface State {
-  fromCurrency?: string;
-  toCurrency?: string;
+  fromCurrency: string;
+  toCurrency: string;
 }
 
 const initialState: State = {
-  fromCurrency: undefined,
+  fromCurrency: '',
   toCurrency: 'USD',
 };
 
