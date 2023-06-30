@@ -25,7 +25,7 @@ const CurrenciesPage = () => {
       flexDirection="column"
       alignItems="center"
       gap={2}
-      height="400px"
+      height="100%"
     >
       <Stack direction="row" alignItems="center" gap={2}>
         <Typography variant="headline" color="primary.main" fontSize={24}>

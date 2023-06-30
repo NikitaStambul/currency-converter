@@ -37,8 +37,7 @@ function App() {
           padding: '60px 0',
           marginBottom: 0,
           minHeight: 600,
-          flex: 1,
-          maxHeight: 'calc(100dvh - 140px)',
+          height: 'calc(100dvh - 140px)',
         }}
         maxWidth="tablet"
       >
